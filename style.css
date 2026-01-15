@@ -1,0 +1,656 @@
+/* ======================================================
+   RESET & BASE
+====================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f5f7fa;
+  color: #1e1e1e;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ======================================================
+   VARIABLES
+====================================================== */
+:root {
+  --primary: #0b3c5d;
+  --secondary: #1d2731;
+  --accent: #cfa44a;
+  --light: #ffffff;
+  --dark: #121212;
+  --gray: #6c757d;
+  --transition: all 0.6s ease;
+  --radius: 14px;
+  --shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+/* ======================================================
+   PRELOADER
+====================================================== */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: var(--dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.loader-logo {
+  color: var(--light);
+  font-size: 2rem;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+
+.loader-bar {
+  width: 200px;
+  height: 4px;
+  background: rgba(255,255,255,0.2);
+  overflow: hidden;
+  position: relative;
+}
+
+.loader-bar::after {
+  content: "";
+  position: absolute;
+  left: -50%;
+  width: 50%;
+  height: 100%;
+  background: var(--accent);
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { left: -50%; }
+  100% { left: 100%; }
+}
+
+/* ======================================================
+   DARK MODE
+====================================================== */
+body.dark-mode {
+  background: #0f1115;
+  color: #e5e5e5;
+}
+
+body.dark-mode .section {
+  background: #12151c;
+}
+
+body.dark-mode header,
+body.dark-mode footer {
+  background: #0b0e14;
+}
+
+/* ======================================================
+   THEME TOGGLE
+====================================================== */
+#themeToggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  border: none;
+  background: var(--accent);
+  color: #000;
+  padding: 12px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2000;
+  box-shadow: var(--shadow);
+}
+
+/* ======================================================
+   SPLASH / PORTADA
+====================================================== */
+.fullscreen-section {
+  height: 100vh;
+  position: relative;
+}
+
+.splash-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.splash-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(0,0,0,0.65), rgba(0,0,0,0.4));
+}
+
+.splash-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--light);
+  text-align: center;
+  z-index: 2;
+}
+
+.splash-title {
+  font-size: 3.5rem;
+  letter-spacing: 4px;
+  animation: fadeDown 1.2s ease;
+}
+
+.splash-subtitle {
+  margin: 20px 0;
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.primary-btn {
+  padding: 14px 36px;
+  border: none;
+  background: var(--accent);
+  color: #000;
+  font-weight: bold;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.primary-btn:hover {
+  transform: translateY(-3px);
+}
+
+/* ======================================================
+   HEADER
+====================================================== */
+header {
+  position: sticky;
+  top: 0;
+  background: var(--light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  z-index: 1000;
+  box-shadow: var(--shadow);
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 500;
+  position: relative;
+}
+
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: var(--transition);
+}
+
+.main-nav a:hover::after {
+  width: 100%;
+}
+
+/* ======================================================
+   SECTIONS
+====================================================== */
+.section {
+  padding: 120px 80px;
+  background: var(--light);
+}
+
+.dark-section {
+  background: #101820;
+  color: var(--light);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.section-header h2 {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+}
+
+.section-header p {
+  color: var(--gray);
+}
+
+/* ======================================================
+   REVEAL ANIMATION
+====================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(80px);
+  transition: 1s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ======================================================
+   INSTITUCIONAL
+====================================================== */
+.institucional-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.institucional-main-image img {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.institucional-text h3 {
+  font-size: 2rem;
+}
+
+.institucional-text h4 {
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.gallery-section {
+  margin-top: 80px;
+}
+
+.gallery-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+
+.gallery-item img:hover {
+  transform: scale(1.05);
+}
+
+/* ======================================================
+   GRADUACION
+====================================================== */
+.graduation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+.media-card {
+  background: #fff;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.media-card img,
+.media-card video {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+/* ======================================================
+   PROMO SPLIT
+====================================================== */
+.promo-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.promo-column h3 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.promo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.promo-card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+/* ======================================================
+   COUNTER
+====================================================== */
+.counter-section {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: var(--light);
+  text-align: center;
+}
+
+.counter-grid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.counter-box span {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+/* ======================================================
+   FOOTER
+====================================================== */
+footer {
+  padding: 80px 40px;
+  background: #0b0e14;
+  color: var(--light);
+  text-align: center;
+}
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+@media (max-width: 1024px) {
+  .institucional-grid,
+  .promo-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 20px;
+  }
+
+  .section {
+    padding: 80px 30px;
+  }
+
+  .splash-title {
+    font-size: 2.4rem;
+  }
+}
+/* ======================================================
+   === EXTENSIÓN AVANZADA – PERIÓDICO ESCOLAR DIGITAL ===
+   NO BORRAR NADA ANTERIOR
+====================================================== */
+
+/* ===============================
+   MOBILE FIRST EXTREMO
+================================ */
+@media (max-width: 480px) {
+
+  body {
+    font-size: 15px;
+  }
+
+  header {
+    padding: 14px 16px;
+  }
+
+  .main-nav {
+    display: none;
+  }
+
+  /* Menú móvil inferior */
+  body::after {
+    content: "";
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 64px;
+    background: rgba(15,15,20,0.95);
+    backdrop-filter: blur(12px);
+    z-index: 1200;
+  }
+
+  .section {
+    padding: 70px 18px;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+  }
+
+  .splash-title {
+    font-size: 2.1rem;
+    line-height: 1.2;
+  }
+
+  .institucional-grid,
+  .promo-split {
+    grid-template-columns: 1fr;
+  }
+
+  .promo-grid,
+  .graduation-grid,
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .media-card img,
+  .media-card video,
+  .promo-card img {
+    height: 180px;
+  }
+}
+
+/* ===============================
+   TABLETS
+================================ */
+@media (max-width: 768px) {
+  .promo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .counter-grid {
+    flex-wrap: wrap;
+  }
+}
+
+/* ======================================================
+   === ESTÉTICA PERIÓDICO ESCOLAR ===
+====================================================== */
+.section-header {
+  position: relative;
+}
+
+.section-header::after {
+  content: "";
+  display: block;
+  width: 140px;
+  height: 3px;
+  background: var(--accent);
+  margin: 20px auto 0;
+}
+
+/* Tipografía editorial */
+.section-header h2,
+.institucional-text h3 {
+  font-family: "Georgia", "Times New Roman", serif;
+  letter-spacing: 1px;
+}
+
+/* Columnas tipo periódico */
+.institucional-text p {
+  column-count: 2;
+  column-gap: 40px;
+  text-align: justify;
+}
+
+@media (max-width: 768px) {
+  .institucional-text p {
+    column-count: 1;
+  }
+}
+
+/* Citas destacadas */
+.institucional-text p::first-letter {
+  font-size: 3.2rem;
+  font-weight: bold;
+  float: left;
+  margin-right: 8px;
+  color: var(--accent);
+}
+
+/* ======================================================
+   === ANIMACIONES AVANZADAS ===
+====================================================== */
+
+/* Stagger animation */
+.media-card,
+.promo-card,
+.gallery-item {
+  opacity: 0;
+  transform: translateY(40px) scale(0.96);
+  transition: all 0.8s ease;
+}
+
+.media-card.active,
+.promo-card.active,
+.gallery-item.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Marco animado para video */
+.video-card {
+  position: relative;
+}
+
+.video-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 3px solid var(--accent);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.6s ease;
+  pointer-events: none;
+}
+
+.video-card:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Zoom suave editorial */
+.media-card img,
+.promo-card img {
+  transition: transform 1.2s ease;
+}
+
+.media-card:hover img,
+.promo-card:hover img {
+  transform: scale(1.08);
+}
+
+/* ======================================================
+   === CONTADOR ANIMADO ===
+====================================================== */
+.counter-box {
+  background: rgba(255,255,255,0.08);
+  padding: 30px 26px;
+  border-radius: 18px;
+  min-width: 140px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+}
+
+.counter-box span {
+  display: block;
+  animation: pulseNumber 1.8s infinite alternate;
+}
+
+@keyframes pulseNumber {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+/* ======================================================
+   === FIRMA TIPO EDITORIAL ===
+====================================================== */
+footer {
+  position: relative;
+}
+
+footer::before {
+  content: "EDICIÓN ESPECIAL · PROMOCIÓN 2025";
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: #000;
+  padding: 6px 16px;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  border-radius: 40px;
+}
+
+/* ======================================================
+   === MODO OSCURO – PERIÓDICO ===
+====================================================== */
+body.dark-mode .section-header::after {
+  background: #e0c36f;
+}
+
+body.dark-mode .institucional-text p::first-letter {
+  color: #e0c36f;
+}
+
+body.dark-mode .counter-box {
+  background: rgba(255,255,255,0.06);
+}
+
+/* ======================================================
+   === OPTIMIZACIÓN DE RENDIMIENTO ===
+====================================================== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
